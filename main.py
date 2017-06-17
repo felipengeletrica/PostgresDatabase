@@ -44,21 +44,27 @@ if __name__ == "__main__":
     #execute only if run as a script
     print "Init Database manager"
 
-    #Instance class
-    postgres_producao = postgres('localhost', 'test', 'root', 'root')
-    postgres_producao2 = postgres('localhost', 'test2', 'root', 'root')
+    #Instance two database connections Posed more be more ...
+    #after install and create database see README
 
-    postgres_producao.connect()
-    postgres_producao2.connect()
-   
+    dbMainDatacenter = postgres('localhost', 'MainDatacenter', 'root', 'root')
+    dbSecondaryDatacenter = postgres('localhost', 'SecondaryDatacenter', 'root', 'root')
+
+    #Connect
+    dbMainDatacenter.connect()
+    dbMainDatacenter.connect()
+
+    #Loop forever test database
     while True:
 
         try:
-            time.sleep(0.1)
+
+            #Interval insertion
+            time.sleep(1)
 
         except Exception as error:
 
-            postgres_producao.connect()
-            postgres_producao2.connect()
+            dbMainDatacenter.connect()
+            dbMainDatacenter.connect()
             
             print "Database error: " + str(error)
