@@ -38,7 +38,7 @@ CREATE TABLE dbMainDatacenter.tb_temperature<br/>
 );<br/>
 
 
-postgres=#\connect dbSecondaryDatacenter;
+postgres=#\connect dbSecondaryDatacenter
 
 CREATE TABLE dbSecondaryDatacenter.tb_temperature<br/>
 (<br/>
