@@ -42,25 +42,44 @@ from postgres import postgres
 if __name__ == "__main__":
 
     #execute only if run as a script
-    print "Init Database manager"
+    print "Init Database test"
 
     #Instance two database connections Posed more be more ...
     #after install and create database see README
 
-    dbMainDatacenter = postgres('localhost', 'MainDatacenter', 'root', 'root')
-    dbSecondaryDatacenter = postgres('localhost', 'SecondaryDatacenter', 'root', 'root')
+    dbMainDatacenter = postgres('localhost', 'dbmaindatacenter', 'dbmainuser', 'root')
+    dbSecondaryDatacenter = postgres('localhost', 'dbsecondarydatacenter', 'dbsecuser', 'root')
 
     #Connect
-    dbMainDatacenter.connect()
-    dbMainDatacenter.connect()
+    retmain = dbMainDatacenter.connect()
+    retsec = dbMainDatacenter.connect()
+    if retmain is False:
+        print 'fail in connect main database'
+    else:
+        print 'Sucess in connect main database'
+
+    if retsec is False:
+        print 'fail in connect secondary database'
+    else:
+        print 'Sucess in connect secondary database'
+
+    #Query
+    query = "INSERT INTO tb_temperature(temperature) VALUES ({0});"
 
     #Loop forever test database
     while True:
 
         try:
 
-            #Interval insertion
-            time.sleep(1)
+            for temp in range(-273, 3825, 1):
+
+                # Interval insertion
+                time.sleep(1)
+                print "Insert temperature: ", temp
+                querycom = query.format(temp)
+                #Insert in both databases
+                dbMainDatacenter.insert(querycom)
+                dbSecondaryDatacenter.insert(querycom)
 
         except Exception as error:
 

@@ -1,7 +1,7 @@
 # PostgresDatabase
 This program implements multiple instances Postgres Database manipulation CRUD
 
-#### Create database using PgAdmin III ou terminal
+#### Create database using psql (terminal)
 
 Postgres documentation: <br/>
 https://www.postgresql.org/docs/manuals/
@@ -22,15 +22,24 @@ postgres=# CREATE DATABASE dbMainDatacenter;<br/>
 CREATE DATABASE<br/>
 postgres=# CREATE DATABASE dbSecondaryDatacenter;<br/>
 
+##### Create users 
+
+postgres=# CREATE USER dbmainuser WITH PASSWORD 'root';<br/>
+postgres=# GRANT ALL PRIVILEGES ON DATABASE dbMainDatacenter to dbmainuser;<br/>
+
+
+postgres=# CREATE USER dbmainuser WITH PASSWORD 'root';<br/>
+postgres=# GRANT ALL PRIVILEGES ON DATABASE dbSecondaryDatacenter to dbmainuser;<br/>
+
+
 List databases:<br/>
 postgres=# \l
 
 
-
-postgres=#\connect dbMainDatacenter
-
-##### Create tables:<br/>
-CREATE TABLE dbMainDatacenter.tb_temperature<br/>
+##### Set database 
+postgres=# \c dbmaindatacenter
+##### Create table:<br/>
+CREATE TABLE tb_temperature<br/>
 (<br/>
  <t/><t/><t/>id serial NOT NULL,<br/>
  <t/><t/><t/> temperature float NOT NULL,<br/>
@@ -38,13 +47,24 @@ CREATE TABLE dbMainDatacenter.tb_temperature<br/>
 );<br/>
 
 
-postgres=#\connect dbSecondaryDatacenter
+##### Set database 
+dbmaindatacenter-# \c dbsecondarydatacenter
 
-CREATE TABLE dbSecondaryDatacenter.tb_temperature<br/>
+CREATE TABLE tb_temperature<br/>
 (<br/>
   <t/><t/><t/>id serial NOT NULL,<br/>
   <t/><t/><t/>temperature float NOT NULL,<br/>
   <t/><t/><t/>"timestamp" timestamp without time zone NOT NULL DEFAULT now()<br/>
 );<br/>
+
+
+#### At the moment two database and two identical tables are created !
+
+## Now testing python code...
+
+
+
+
+
 
 

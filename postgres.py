@@ -22,12 +22,11 @@ class postgres(object):
                 "' password='" + password + "'"
 
             self.autocommit_mode = bool(autocommit)
-            #self.conn = pg.connect(self.conn_string)
-            #self.cursor = self.conn.cursor()
+            self.conn = pg.connect(self.conn_string)
+            self.cursor = self.conn.cursor()
 
-            self.conn = None
-            self.cursor = None
-
+            #self.conn = None
+            #self.cursor = None
 
         except:
             raise
