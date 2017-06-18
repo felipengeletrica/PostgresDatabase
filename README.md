@@ -60,7 +60,13 @@ CREATE TABLE tb_temperature<br/>
 
 #### At the moment two database and two identical tables are created !
 
-## Now testing python code...
+### Now testing python code...
+
+Install psycopg2 after 
+
+In terminal type:<br/>
+
+$python main.py<br/>
 
 
 
