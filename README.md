@@ -4,7 +4,7 @@ This program implements multiple instances Postgres Database manipulation CRUD
 #### Create database using psql (terminal)
 
 Postgres documentation: <br/>
-https://www.postgresql.org/docs/manuals/
+https://www.postgresql.org/docs/manuals/<br/>
 ######Now create databases
 
 Connecting after install:<br/>
